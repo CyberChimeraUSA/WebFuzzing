@@ -3,24 +3,24 @@ package pack1;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.util.Enumeration;
-import java.net.*;
-import java.util.*;
+//import java.net.NetworkInterface;
+//import java.net.SocketException;
+//import java.util.Enumeration;
+//import java.net.*;
+//import java.util.*;
 import javax.swing.*;
 
-public class SwingLayoutDemo {
+public class NetFuzzDemo {
 	   private JFrame mainFrame;
 	   private JLabel headerLabel;
 	   private JLabel statusLabel;
 	   private JPanel controlPanel;
 
-	   public SwingLayoutDemo(){
+	   public NetFuzzDemo(){
 	      prepareGUI();
 	   }
 	   public static void main(String[] args){
-	      SwingLayoutDemo swingLayoutDemo = new SwingLayoutDemo();  
+	      NetFuzzDemo swingLayoutDemo = new NetFuzzDemo();  
 	      swingLayoutDemo.showBorderLayoutDemo();       
 	   }
 	   private void prepareGUI(){
