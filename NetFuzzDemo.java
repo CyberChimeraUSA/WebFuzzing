@@ -24,7 +24,7 @@ public class NetFuzzDemo {
 	      swingLayoutDemo.showBorderLayoutDemo();       
 	   }
 	   private void prepareGUI(){
-	      mainFrame = new JFrame("DebFuzz");
+	      mainFrame = new JFrame("DebFuzz Main");
 	      mainFrame.setSize(800,800);
 	      mainFrame.setLayout(new GridLayout(3, 1));
 
@@ -52,6 +52,7 @@ public class NetFuzzDemo {
 	      JTextField Domain = new JTextField(6);   
 	      JButton ResolveButton = new JButton("Resolve Domain"); 
 	      JButton LocalInterfaceInfo = new JButton("Local Interface Info"); 
+	      JButton URLQuery = new JButton("Query URL"); 
 	      JButton IPResolve = new JButton("Resolve IP"); 
 	      
 	      //Panel for IP Address
@@ -72,7 +73,7 @@ public class NetFuzzDemo {
 	      panel.add(new JLabel(" "),BorderLayout.LINE_END); 
 	      
 	      panel.add(LocalInterfaceInfo,BorderLayout.LINE_START); 
-	      panel.add(new JLabel(" ")); 
+	      panel.add(URLQuery); 
 	      panel.add(new JLabel(" "),BorderLayout.LINE_END); 
 	      
 
@@ -93,6 +94,16 @@ public class NetFuzzDemo {
 			           obj.local_interface_info(); 		        	 
 		         }	
 		      });
+	      
+	      URLQuery.addActionListener(new ActionListener() {
+		         public void actionPerformed(ActionEvent e) {
+		        	 statusLabel.setText("Hello URL Query"); 
+		        	 URL_Query Query_Obj = new URL_Query();
+		        	 Query_Obj.URL_Query_init();
+		         }	
+		      });
+	      
+	      
 	      controlPanel.add(panel);
 	      mainFrame.setVisible(true);  
 	   }
