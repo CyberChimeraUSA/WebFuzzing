@@ -54,11 +54,20 @@ public class NetFuzzDemo {
 	      JButton LocalInterfaceInfo = new JButton("Local Interface Info"); 
 	      JButton URLQuery = new JButton("Query URL"); 
 	      JButton IPResolve = new JButton("Resolve IP"); 
+	      JButton HeaderDump = new JButton("Dump Header");
 	      
 	      //Panel for IP Address
 	      JPanel panel = new JPanel();
 	      panel.setLayout(new GridLayout(4,3)); //new
 	      panel.setBackground(Color.white);     
+	      
+	      panel.add(LocalInterfaceInfo,BorderLayout.LINE_START); 
+	      panel.add(URLQuery); 
+	      panel.add((HeaderDump),BorderLayout.LINE_END); 
+	      
+	      panel.add(new JLabel(" "),BorderLayout.LINE_START); 
+	      panel.add(new JLabel(" ")); 
+	      panel.add(new JLabel(" "),BorderLayout.LINE_END); 
 	      
 	      panel.add(new JLabel("IP Address: "),BorderLayout.LINE_START); 
 	      panel.add(IP);
@@ -67,14 +76,6 @@ public class NetFuzzDemo {
 	      panel.add(new JLabel("Domain Name: "),BorderLayout.LINE_START); 
 	      panel.add(Domain);
 	      panel.add(ResolveButton,BorderLayout.LINE_END); 
-	      
-	      panel.add(new JLabel(" "),BorderLayout.LINE_START); 
-	      panel.add(new JLabel(" ")); 
-	      panel.add(new JLabel(" "),BorderLayout.LINE_END); 
-	      
-	      panel.add(LocalInterfaceInfo,BorderLayout.LINE_START); 
-	      panel.add(URLQuery); 
-	      panel.add(new JLabel(" "),BorderLayout.LINE_END); 
 	      
 
 
@@ -103,6 +104,15 @@ public class NetFuzzDemo {
 		         }	
 		      });
 	      
+	      
+	      HeaderDump.addActionListener(new ActionListener() {
+		         public void actionPerformed(ActionEvent e) {
+		        	 statusLabel.setText("Hello Header Dump"); 
+		        	 Header_Dump Header_Dump_Obj = new Header_Dump();
+		        	 Header_Dump_Obj.Header_Init();
+
+		         }	
+		      });
 	      
 	      controlPanel.add(panel);
 	      mainFrame.setVisible(true);  

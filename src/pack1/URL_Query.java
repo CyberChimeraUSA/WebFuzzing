@@ -58,7 +58,7 @@ public class URL_Query {
 	       
 	      //Panel for IP Address
 	      JPanel panel = new JPanel();
-	      panel.setLayout(new GridLayout(3,3));
+	      panel.setLayout(new GridLayout(6,3));
 	      panel.setBackground(Color.white);     
 	      
 	      panel.add(new JLabel("URL: "),BorderLayout.LINE_START); 
@@ -73,6 +73,17 @@ public class URL_Query {
 	      panel.add(new JLabel(" ")); 
 	      panel.add(new JLabel(" "),BorderLayout.LINE_END); 
 	      
+	      panel.add(new JLabel("Example: "),BorderLayout.LINE_START); 
+	      panel.add(new JLabel("http://google.com ")); 
+	      panel.add(new JLabel(" "),BorderLayout.LINE_END); 
+	      
+	      panel.add(new JLabel(" "),BorderLayout.LINE_START); 
+	      panel.add(new JLabel("ftp://google.com ")); 
+	      panel.add(new JLabel(" "),BorderLayout.LINE_END); 
+	      
+	      panel.add(new JLabel(" "),BorderLayout.LINE_START); 
+	      panel.add(new JLabel("telnet://google.com ")); 
+	      panel.add(new JLabel(" "),BorderLayout.LINE_END); 
 	      
 	      Protocol_Test_Button.addActionListener(new ActionListener() {
 		         public void actionPerformed(ActionEvent e) {
@@ -105,25 +116,57 @@ public class URL_Query {
 	}
 	
 	void web_page_dump(String input_URL){
+		
+
 		try {
-			// Open the URLConnection for reading
-	        URL u = new URL(input_URL);
+			// set default encoding
+			String encoding = "ISO-8859-1";
+			URL u = new URL(input_URL);
 			URLConnection uc = u.openConnection();
-			  try (InputStream raw = uc.getInputStream()) { // autoclose
-			  InputStream buffer = new BufferedInputStream(raw);
-			  // chain the InputStream to a Reader
-			  Reader reader = new InputStreamReader(buffer);
-			  int c;
-			  while ((c = reader.read()) != -1) {
+			String contentType = uc.getContentType();
+			int encodingStart = contentType.indexOf("charset=");
+			
+			if (encodingStart != -1) {
+			   encoding = contentType.substring(encodingStart + 8);
+			}
+			InputStream in = new BufferedInputStream(uc.getInputStream());
+			Reader r = new InputStreamReader(in, encoding);
+			int c;
+			
+			while ((c = r.read()) != -1) {
 			   System.out.print((char) c);
-			  }
-			 }
-		  } 
-		 catch (MalformedURLException ex) {
-			 System.err.println(input_URL + " is not a parseable URL");
-			  } catch (IOException ex) {
+			}
+			r.close();
+			
+		    } catch (MalformedURLException ex) {
+			   System.err.println(input_URL + " is not a parseable URL");
+			} catch (UnsupportedEncodingException ex) {
+			   System.err.println(
+			   "Server sent an encoding Java does not support: " + ex.getMessage());
+			} catch (IOException ex) {
 			   System.err.println(ex);
-			 }
+			}
+		/*try {
+		// Open the URLConnection for reading
+        URL u = new URL(input_URL);
+		URLConnection uc = u.openConnection();
+		  try (InputStream raw = uc.getInputStream()) { // autoclose
+		  InputStream buffer = new BufferedInputStream(raw);
+		  // chain the InputStream to a Reader
+		  Reader reader = new InputStreamReader(buffer);
+		  int c;
+		  while ((c = reader.read()) != -1) {
+		   System.out.print((char) c);
+		  }
+		 }
+	  } 
+	 catch (MalformedURLException ex) {
+		 System.err.println(input_URL + " is not a parseable URL");
+		  } catch (IOException ex) {
+		   System.err.println(ex);
+		 } */
+	
+		
 		
 	}
 	
