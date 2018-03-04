@@ -95,6 +95,7 @@ public class Header_Dump {
 		{
 			try {
 				URL u = new URL(input_URL);
+				
 				URLConnection uc = u.openConnection();
 				
 				System.out.println("Entered URL: " + uc.getURL());

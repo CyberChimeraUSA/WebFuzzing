@@ -55,6 +55,7 @@ public class NetFuzzDemo {
 	      JButton URLQuery = new JButton("Query URL"); 
 	      JButton IPResolve = new JButton("Resolve IP"); 
 	      JButton HeaderDump = new JButton("Dump Header");
+	      JButton Encoder = new JButton("Encode/Decode String");
 	      
 	      //Panel for IP Address
 	      JPanel panel = new JPanel();
@@ -65,7 +66,7 @@ public class NetFuzzDemo {
 	      panel.add(URLQuery); 
 	      panel.add((HeaderDump),BorderLayout.LINE_END); 
 	      
-	      panel.add(new JLabel(" "),BorderLayout.LINE_START); 
+	      panel.add(Encoder,BorderLayout.LINE_START); 
 	      panel.add(new JLabel(" ")); 
 	      panel.add(new JLabel(" "),BorderLayout.LINE_END); 
 	      
@@ -110,6 +111,13 @@ public class NetFuzzDemo {
 		        	 statusLabel.setText("Hello Header Dump"); 
 		        	 Header_Dump Header_Dump_Obj = new Header_Dump();
 		        	 Header_Dump_Obj.Header_Init();
+
+		         }	
+		      });
+	      Encoder.addActionListener(new ActionListener() {
+		         public void actionPerformed(ActionEvent e) {
+		        	 Encoder EncodeObj = new Encoder();
+		        	 EncodeObj.Encoder_Init();
 
 		         }	
 		      });
