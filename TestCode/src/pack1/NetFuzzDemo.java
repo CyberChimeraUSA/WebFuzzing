@@ -48,14 +48,11 @@ public class NetFuzzDemo {
 	   
 	   private void showBorderLayoutDemo(){
 	      headerLabel.setText("Fuzzer");      
-	      JTextField IP = new JTextField(6);   
-	      JTextField Domain = new JTextField(6);   
-	      JButton ResolveButton = new JButton("Resolve Domain"); 
 	      JButton LocalInterfaceInfo = new JButton("Local Interface Info"); 
 	      JButton URLQuery = new JButton("Query URL"); 
-	      JButton IPResolve = new JButton("Resolve IP"); 
 	      JButton HeaderDump = new JButton("Dump Header");
 	      JButton Encoder = new JButton("Encode/Decode String");
+	      JButton DNS_Lookup = new JButton ("DNS Lookup");
 	      
 	      //Panel for IP Address
 	      JPanel panel = new JPanel();
@@ -67,28 +64,28 @@ public class NetFuzzDemo {
 	      panel.add((HeaderDump),BorderLayout.LINE_END); 
 	      
 	      panel.add(Encoder,BorderLayout.LINE_START); 
+	      panel.add(DNS_Lookup); 
+	      panel.add(new JLabel(" "),BorderLayout.LINE_END); 
+	      
+	      panel.add(new JLabel(" "),BorderLayout.LINE_START); 
 	      panel.add(new JLabel(" ")); 
 	      panel.add(new JLabel(" "),BorderLayout.LINE_END); 
 	      
-	      panel.add(new JLabel("IP Address: "),BorderLayout.LINE_START); 
-	      panel.add(IP);
-	      panel.add(IPResolve,BorderLayout.LINE_END);
+	      panel.add(new JLabel(" "),BorderLayout.LINE_START); 
+	      panel.add(new JLabel(" ")); 
+	      panel.add(new JLabel(" "),BorderLayout.LINE_END); 
 	      
-	      panel.add(new JLabel("Domain Name: "),BorderLayout.LINE_START); 
-	      panel.add(Domain);
-	      panel.add(ResolveButton,BorderLayout.LINE_END); 
 	      
-
-
-	      //Event Handler for okButton (Resolves IP and Domain Info)
-	      //If NULL, prints local 
-	      ResolveButton.addActionListener(new ActionListener() {
+	      DNS_Lookup.addActionListener(new ActionListener() {
 		         public void actionPerformed(ActionEvent e) {
-		            
-		             launch_handler(IP.getText(),Domain.getText());          
+		        	 DNS_Lookup dns_obj = new DNS_Lookup();
+		        	 dns_obj.DNS_Lookup_Init();
+		     
+		                   
 		         }          
 		      });
-	      
+
+	         
 	      //getNetworkInterfaces
 	      LocalInterfaceInfo.addActionListener(new ActionListener() {
 		         public void actionPerformed(ActionEvent e) {
@@ -126,15 +123,7 @@ public class NetFuzzDemo {
 	      mainFrame.setVisible(true);  
 	   }
 	   
-	   //Handler for IP and Domain Processing
-	   void launch_handler(String IP,String Domain)
-	   {
-	           String data = "IP Address is " + IP; 
-	           data +=  ", Domain is " + new String(Domain); 
-	           BasicHandler obj = new BasicHandler();
-	           obj.domain_processing(Domain);
-		      statusLabel.setText(data); 
-	   }
+
 }
 
 
